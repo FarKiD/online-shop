@@ -12,7 +12,8 @@ const multer = require('multer');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = 'mongodb://0.0.0.0:27017/shop';
+// const MONGODB_URI = 'mongodb://0.0.0.0:27017/shop';
+const MONGODB_URI = 'mongodb+srv://sajjad:mYHQBo4dfRNxL2H1@cluster0.wfbxygp.mongodb.net/?retryWrites=true&w=majority';
 
 const app = express();
 const store = new MongoDBStore({
@@ -110,9 +111,14 @@ app.use((error, req, res, next) => {
   });
 });
 
+let port = process.env.PORT;
+if(port == null || port == "") {
+  port = 3000;
+}
+
 mongoose.connect(MONGODB_URI)
 .then(result => {
-  app.listen(3000);
+  app.listen(port);
 })
 .catch(err => {
   console.log(err);
