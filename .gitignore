@@ -1,3 +1,6 @@
 node_modules
 _public
 _views
+server.cert
+server.key
+access.log
